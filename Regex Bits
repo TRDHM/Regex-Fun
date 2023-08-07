@@ -1,0 +1,7 @@
+#Match text within tag on a webpage. Uses forward and negative lookahead w/0 width assertion so you won't grab anything else.
+$Page = Invoke-RestMethod 'URI'
+$golf = '(?<=<TAG class = "CLASS_NAME">).+(?=</TAG>)'
+$VALUE = ($PAGE | Select-String $golf -AllMatches).Matches
+
+#Select any groups of one or more characters not including ". Useful for when you want to grab all the values inside "" strings, and later access their values
+'"([^"]+)"'
